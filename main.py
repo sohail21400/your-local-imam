@@ -105,3 +105,11 @@ with col2:
 
 with st.sidebar:
     st.text("Made with love")
+
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
