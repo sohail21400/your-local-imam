@@ -3,12 +3,12 @@ import streamlit as st
 from streamlit_chat import message
 import json
 from PIL import Image
-# TODO: add a button to clear the chat. DONE
-# TODO: auto first letter capitalization for user input. DONE
-# TODO: add temperature slider inside an expandable section. DONE
-# TODO: temprature is not working. DONE
-# TODO: make the text box pinned on top or bottom. NOT POSSIBLE
-# TODO: Add cautionary message in the sidebar. DONE
+# : add a button to clear the chat. DONE
+# : auto first letter capitalization for user input. DONE
+# : add temperature slider inside an expandable section. DONE
+# : temprature is not working. DONE
+# : make the text box pinned on top or bottom. NOT POSSIBLE
+# : Add cautionary message in the sidebar. DONE
 
 # TODO: show these demo questions when user taps qustion mark icon
 # TODO: add auto save the messages as cache
@@ -58,6 +58,7 @@ def get_user_input():
 def generate_response(temperature):
     headers = {
         'Content-Type': 'application/json',
+        'Authorization': f'Bearer {st.secrets.OPEN_API_KEY}'
     }
     data = {
         "model": "gpt-3.5-turbo",
@@ -66,7 +67,7 @@ def generate_response(temperature):
         'temperature': temperature,
     }
     response = requests.post(
-        'https://chatgpt-api.shn.hk/v1/', headers=headers, json=data)
+        'https://api.openai.com/v1/chat/completions', headers=headers, json=data)
     # TODO: do you need other response codes?
     reply = response.json()
     print(reply)
